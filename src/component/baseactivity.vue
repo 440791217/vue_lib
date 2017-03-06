@@ -1,9 +1,13 @@
 <template>
-    <mt-header title="标题过长会隐藏后面的内容啊哈哈哈哈">
+    <mt-header v-bind:title=title>
         <router-link to="/" slot="left">
-            <mt-button icon="back">返回</mt-button>
+            <mt-button icon="back"></mt-button>
         </router-link>
-        <p slot="right">123123</p>
+        <p slot="right">
+            <slot name="right">
+
+            </slot>
+        </p>
         <!--<mt-button icon="more" slot="right"></mt-button>-->
     </mt-header>
 </template>
@@ -18,8 +22,6 @@
 
             }
         },
-        components:{
-
-        }
+        props:["title"]
     }
 </script>

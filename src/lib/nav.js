@@ -1,39 +1,38 @@
 /**
- * Created by mark on 2017/3/1.
- */
-/**
  * Created by mark on 2016/12/29.
  */
 import {Base64} from "js-base64"
-import * as log from "mark_logger"
+import * as Logger from "mark_logger"
 
 function nav() {
 
-    var input;
-
-    init();
-
-    function init() {
+    function getInput() {
+        var input;
         var params = GetRequest();
         var data = params['data'];
-        log.d("nav data:" + data);
+        Logger.d("nav data:" + data);
 
         input = Base64.decode(data);
-        log.d("nav params:" + input);
+        Logger.d("nav params:" + input);
 
 
         try {
             input = JSON.parse(input);
         } catch (e) {
-            log.e("nav input is not json");
+            Logger.e("nav input is not json");
         }
 
-
+        return input;
     }
 
 
     function install(Vue) {
-        Vue.ggNav = new f();
+        Vue.ggNav = {
+            push: push,
+            getInput: getInput,
+        }
+
+        Logger.d("has installed");
     }
 
     function push(f_href, f_data) {
@@ -41,12 +40,12 @@ function nav() {
         var f_link;
 
         if (f_data==undefined) {
-            log.d("nav push data is unDefined");
+            Logger.d("nav push data is unDefined");
             f_data = {}
         }
 
         f_data = JSON.stringify(f_data);
-        log.d("nav push data:" + f_data);
+        Logger.d("nav push data:" + f_data);
         f_data = "data=" + Base64.encode(f_data);
         f_link = f_href + "?" + f_data;
         window.location.href = f_link;
@@ -68,15 +67,9 @@ function nav() {
     }
 
 
-    function f() {
-        return {
-            install: install,
-            push: push,
-            input: input,
-        }
+    return {
+        install: install,
     }
-
-    return f();
 }
 
 export default nav();

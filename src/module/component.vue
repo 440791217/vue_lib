@@ -20,7 +20,8 @@ import mycomponent from './component1.vue'
     export default{
         data(){
             return{
-                msg:'hello vue'
+                msg:'hello vue',
+
             }
         },
         components:{

@@ -1,8 +1,9 @@
 <template>
     <div>
 
-        <div>123123</div>
-        <base-activity></base-activity>
+        <base-activity :title=ggnav.title>
+            <p slot="right"></p>
+        </base-activity>
     </div>
 </template>
 <style>
@@ -14,7 +15,10 @@
     export default{
         data(){
             return{
-                msg:'hello vue'
+                msg:'hello vue',
+                ggnav:{
+                    title:"bb崽大人"
+                }
             }
         },
         components:{
