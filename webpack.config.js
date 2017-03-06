@@ -4,7 +4,6 @@ var webpack = require('webpack')
 module.exports = {
     entry: {
         main: './src/main.js',
-        http: './src/js/http.js',
     },
     output: {
         path: path.resolve(__dirname, './dist'),

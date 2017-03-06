@@ -11,7 +11,7 @@
 <script>
 
     import Vue from "vue"
-    import nav from "../js/nav"
+    import nav from "../lib/nav/nav"
 
 //    Vue.use(nav);
 

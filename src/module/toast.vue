@@ -16,7 +16,7 @@
 <script type="text/babel">
     // import { Toast } from 'mint-ui';
     import  Vue from 'vue'
-    import toast from '../js/toast'
+    import toast from '../lib/toast/toast'
 
     Vue.use(toast);
 

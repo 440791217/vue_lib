@@ -7,8 +7,8 @@
 
 </style>
 <script>
-import httpClient from '../js/http'
-import config from '../js/sys'
+import httpClient from '../lib/http/http'
+import config from '../lib/sys/sys'
 import Vue from 'vue'
 import log from 'mark_logger'
 
