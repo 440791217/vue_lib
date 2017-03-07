@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import MintUI from 'mint-ui';
 import ggRouter from "./lib/router/router"
+import ggNav from "./lib/nav/nav"
 import 'mint-ui/lib/style.css'
 import VueRouter from 'vue-router'
 import testhttp from './module/http.vue'
@@ -13,11 +14,26 @@ import textComponent1 from './module/component1.vue'
 import Activity from './module/baseactivity.vue'
 import Nav from './module/nav.vue'
 import vrouter from './module/router.vue'
+import log from 'mark_logger'
 
+/*
+log
+ */
+import gglog from './lib/log/log'
+Vue.use(gglog);
 Vue.use(MintUI);
 Vue.use(VueRouter);
-Vue.use(ggRouter);
 
+/*
+toast
+ */
+import toast from './lib/toast/toast'
+
+Vue.use(toast);
+
+/*
+router
+ */
 // 0. 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
 
 // 1. 定义（路由）组件。
@@ -44,13 +60,37 @@ const routes = [
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 const router = new VueRouter({
-   // routes // （缩写）相当于 routes: routes
-    routes:Vue.ggRouter.configRouter(
+    // routes // （缩写）相当于 routes: routes
+    routes:ggRouter.configRouter(
         {
             array:routes
         }
     )
 })
+Vue.use(ggRouter,{router:router});
+
+/*
+nav
+ */
+Vue.use(ggNav);
+
+
+/*
+http
+ */
+import httpClient from './lib/http/http'
+import config from './lib/sys/sys'
+
+Vue.use(httpClient);
+var that=Vue.prototype.HttpClient;
+that.httpUrl = config.site.httpUrl;
+log.d("httpClient.httpUrl:"+that.httpUrl)
+that.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+that.reqOptions = {
+    headers: that.headers
+}
+
+
 
 // 4. 创建和挂载根实例。
 // 记得要通过 router 配置参数注入路由，

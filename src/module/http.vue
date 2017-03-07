@@ -1,55 +1,39 @@
 <template>
     <div>
-        <mt-button  @click.native="getTime"  size="large" type="danger">test s001</mt-button>
+        <mt-button @click.native="getTime" size="large" type="danger">{{msg}}</mt-button>
     </div>
 </template>
 <style>
 
 </style>
 <script>
-import httpClient from '../lib/http/http'
-import config from '../lib/sys/sys'
-import Vue from 'vue'
-import log from 'mark_logger'
-
-Vue.use(httpClient);
-var that=Vue.HttpClient;
-that.httpUrl = config.site.httpUrl;
-log.d("httpClient.httpUrl:"+that.httpUrl)
-that.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
-that.reqOptions = {
-    headers: that.headers
-}
-
-
-function s001() {
-    function succ(body) {
-
-    }
-
-    var cmd={
-
-    }
-
-    return {
-        f_suffix:'s001',
-        f_content:cmd,
-        f_callback:{
-            succ:succ
-        }
-    }
-}
-
 
     export default{
         data(){
-            return{
-                msg:'test http'
+            return {
+                msg: 'tddddsadas23'
             }
         },
-        methods:{
+        methods: {
+            s001() {
+                function succ(body) {
+
+                }
+
+                var cmd = {}
+
+                return {
+                    f_suffix: 's001',
+                    f_content: cmd,
+                    f_callback: {
+                        succ: succ
+                    }
+                }
+            },
             getTime(){
-                Vue.HttpClient.post(s001());
+                this.Logger.open(true);
+                this.Logger.d(this.msg);
+                this.HttpClient.post(this.s001());
             },
         }
     }

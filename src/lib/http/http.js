@@ -13,7 +13,7 @@ function httpClient() {
 
     function install(Vue) {
         Vue.use(Http);
-        Vue.HttpClient = config = {
+        Vue.prototype.HttpClient = config = {
             Base_ACCESSTOKEN: "0000000000000000",
             httpUrl: undefined,
             headers: undefined,

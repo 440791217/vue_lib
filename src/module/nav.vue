@@ -1,8 +1,7 @@
 <template>
     <div>
 
-        <div>{{msg}}</div>
-
+        <mt-button @click.native="getInput" size="large" type="danger">getInput</mt-button>
     </div>
 </template>
 <style>
@@ -10,15 +9,16 @@
 </style>
 <script>
 
-    import Vue from "vue"
-    import nav from "../lib/nav/nav"
-
-//    Vue.use(nav);
 
     export default{
         data(){
             return{
                 msg:'hello Nav'
+            }
+        },
+        methods:{
+            getInput() {
+                this.ggNav.getInput();
             }
         }
     }

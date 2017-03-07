@@ -27,7 +27,7 @@ function nav() {
 
 
     function install(Vue) {
-        Vue.ggNav = {
+        Vue.prototype.ggNav = {
             push: push,
             getInput: getInput,
         }

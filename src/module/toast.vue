@@ -14,21 +14,17 @@
 </style>
 
 <script type="text/babel">
-    // import { Toast } from 'mint-ui';
-    import  Vue from 'vue'
-    import toast from '../lib/toast/toast'
 
-    Vue.use(toast);
 
     export default {
         methods: {
             openToast() {
-                Vue.mToast.show({
+                this.ggToast.show({
                     f_message: '1111'
                 });
             },
             openToastWithIcon() {
-                Vue.mToast.show("2222");
+                this.ggToast.show("2222");
             },
             openBottomToast() {
                 // Toast({

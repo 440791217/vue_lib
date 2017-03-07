@@ -5,14 +5,17 @@ function router() {
 
     const TYPE_ROUTER_PUSH='1';
     const TYPE_ROUTER_REPLACE='2';
+    var router;
 
-    function install(Vue) {
-        Vue.ggRouter = {
+    function install(Vue,option) {
+        Vue.prototype.ggRouter = {
             push:push,
             replace:replace,
             go:go,
             configRouter:configRouter,
         }
+
+        router=option['router'];
     }
 
     /*
@@ -65,9 +68,9 @@ function router() {
          }
 
          if(f_type==TYPE_ROUTER_PUSH)
-             this.$router.push(obj);
+             router.push(obj);
          else if(f_type==TYPE_ROUTER_REPLACE)
-             this.$router.go(obj);
+             router.push(obj);
     }
 
     /*
@@ -80,7 +83,7 @@ function router() {
         var num=-1
         if(data!=undefined)
             num=data['f_num'];
-        this.$router.go(num);
+        router.go(num);
     }
     /*
     input:
@@ -112,7 +115,8 @@ function router() {
     }
 
     return {
-        install:install
+        install:install,
+        configRouter:configRouter,
     }
 }
 

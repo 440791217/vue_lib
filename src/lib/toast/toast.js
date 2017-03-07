@@ -9,7 +9,7 @@ function myToast() {
 
     function install(Vue) {
 
-        Vue.mToast=config={
+        Vue.prototype.ggToast=config={
             show:show,
             position:'bottom',
             duration:3000,
