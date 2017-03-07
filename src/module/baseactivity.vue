@@ -2,6 +2,7 @@
     <div>
 
         <base-activity :title=ggnav.title>
+
             <p slot="right"></p>
         </base-activity>
     </div>
@@ -10,14 +11,14 @@
 
 </style>
 <script>
-    import Activity from "../component/baseactivity.vue"
+    import Activity from "../component/header/header.vue"
 
     export default{
         data(){
             return{
-                msg:'hello vue',
+                msg:'hello1 vue',
                 ggnav:{
-                    title:"bb崽大人"
+                    title:"b2b崽大人"
                 }
             }
         },

@@ -1,8 +1,14 @@
 <template>
     <mt-header v-bind:title=title>
-        <router-link to="/" slot="left">
-            <mt-button icon="back"></mt-button>
-        </router-link>
+
+        <p slot="left">
+            <slot name="left">
+                <mt-button icon="back">
+
+                </mt-button>
+            </slot>
+        </p>
+
         <p slot="right">
             <slot name="right">
 
@@ -19,7 +25,7 @@
     export default{
         data(){
             return{
-
+                msg:"2"
             }
         },
         props:["title"]

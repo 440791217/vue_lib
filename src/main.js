@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import MintUI from 'mint-ui';
+import ggRouter from "./lib/router/router"
 import 'mint-ui/lib/style.css'
 import VueRouter from 'vue-router'
 import testhttp from './module/http.vue'
@@ -11,9 +12,11 @@ import textComponent from './module/component.vue'
 import textComponent1 from './module/component1.vue'
 import Activity from './module/baseactivity.vue'
 import Nav from './module/nav.vue'
+import vrouter from './module/router.vue'
 
 Vue.use(MintUI);
 Vue.use(VueRouter);
+Vue.use(ggRouter);
 
 // 0. 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
 
@@ -27,20 +30,26 @@ Vue.use(VueRouter);
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-    { path: '/httpClient', component:testhttp },
-    { path: '/toast', component: testtoast },
-    { path: '/header',component:testheader},
-    { path:'/pull_down',component:pull_down},
-    { path:'/component',component:textComponent},
-    { path:'/component1',component:textComponent1},
-    { path:'/Activity',component:Activity},
-    { path:'/nav',component:Nav},
+    { name: 'httpClient', component:testhttp },
+    { name: 'toast', component: testtoast },
+    { name: 'header',component:testheader},
+    { name:'pull_down',component:pull_down},
+    { name:'component',component:textComponent},
+    { name:'component1',component:textComponent1},
+    { name:'Activity',component:Activity},
+    { name:'nav',component:Nav},
+    { name:'router',component:vrouter},
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 const router = new VueRouter({
-    routes // （缩写）相当于 routes: routes
+   // routes // （缩写）相当于 routes: routes
+    routes:Vue.ggRouter.configRouter(
+        {
+            array:routes
+        }
+    )
 })
 
 // 4. 创建和挂载根实例。

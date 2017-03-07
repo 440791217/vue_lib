@@ -62,6 +62,10 @@ var options=[
     {
         value:"nav",
         text:"nav",
+    },
+    {
+        value:'router',
+        text:"router",
     }
 ]
     var router=new VueRouter();
