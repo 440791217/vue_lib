@@ -1,6 +1,8 @@
 <template>
     <div>
+        <gg-header >
 
+        </gg-header>
         <mt-button @click.native="getInput" size="large" type="danger">getInput</mt-button>
     </div>
 </template>

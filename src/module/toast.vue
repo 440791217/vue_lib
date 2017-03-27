@@ -1,5 +1,8 @@
 <template>
     <div class="page-toast">
+        <gg-header >
+
+        </gg-header>
         <h1 class="page-title">Toast</h1>
         <div class="page-toast-wrapper">
             <mt-button @click.native="openToast" size="large">点击弹出 Toast</mt-button>
@@ -20,7 +23,7 @@
         methods: {
             openToast() {
                 this.ggToast.show({
-                    f_message: '1111'
+                    f_message: '1111'+this.ggMoment("20160102","YYYYMMDD").format("YYYY-MM-DD"),
                 });
             },
             openToastWithIcon() {

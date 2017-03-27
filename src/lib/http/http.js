@@ -56,8 +56,7 @@ function httpClient() {
                 doAfter();
             }
 
-            Vue.http.post(f_url, data, config.reqOptions)
-                .then(rsp=>succ(rsp),rsp=>err(rsp));
+            Vue.http.post(f_url, data, config.reqOptions).then(succ,err);
 
 
             if (f_show_loading) {

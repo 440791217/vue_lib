@@ -1,5 +1,8 @@
 <template>
     <div>
+        <gg-header >
+
+        </gg-header>
         <mt-button @click="push"  size="large">测试 push</mt-button>
         <mt-button @click="back" size="large">返回上一页</mt-button>
     </div>

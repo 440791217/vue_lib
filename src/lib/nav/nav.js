@@ -8,7 +8,7 @@ function nav() {
 
     function getInput() {
         var input;
-        var params = GetRequest();
+        var params = getRequest();
         var data = params['data'];
         Logger.d("nav data:" + data);
 
@@ -30,6 +30,7 @@ function nav() {
         Vue.prototype.ggNav = {
             push: push,
             getInput: getInput,
+            getRequest:getRequest,
         }
 
         Logger.d("has installed");
@@ -51,7 +52,7 @@ function nav() {
         window.location.href = f_link;
     }
 
-    function GetRequest() {
+    function getRequest() {
 
         var strs;
         var url = location.search; //获取url中"?"符后的字串

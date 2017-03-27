@@ -5,6 +5,7 @@ function router() {
 
     const TYPE_ROUTER_PUSH='1';
     const TYPE_ROUTER_REPLACE='2';
+    var jsonRouter;
     var router;
 
     function install(Vue,option) {
@@ -13,6 +14,7 @@ function router() {
             replace:replace,
             go:go,
             configRouter:configRouter,
+            jsonRouter:jsonRouter,
         }
 
         router=option['router'];
@@ -114,9 +116,14 @@ function router() {
         return rArray;
     }
 
+    function setJsonRouter(value) {
+        jsonRouter=value;
+    }
+
     return {
         install:install,
         configRouter:configRouter,
+        setJsonRouter:setJsonRouter,
     }
 }
 

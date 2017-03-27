@@ -1,29 +1,33 @@
 <template>
     <div>
 
-        <base-activity :title=ggnav.title>
+        <gg-header :title=ggnav.title>
 
             <p slot="right"></p>
-        </base-activity>
+        </gg-header>
     </div>
 </template>
 <style>
 
 </style>
 <script>
-    import Activity from "../component/header/header.vue"
+
 
     export default{
         data(){
             return{
                 msg:'hello1 vue',
                 ggnav:{
-                    title:"b2b崽大人"
+                    title:undefined
                 }
             }
         },
-        components:{
-            'base-activity':Activity
-        }
+        methods:{
+            onBack(){
+                this.Logger.d("onback test");
+                this.ggRouter.go();
+
+            }
+        },
     }
 </script>

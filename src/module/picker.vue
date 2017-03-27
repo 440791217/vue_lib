@@ -1,20 +1,26 @@
 <template>
     <div>
-        <gg-header >
+        <gg-header>
 
         </gg-header>
-        <div>this is template body</div>
+        <div class="gg page-main">
+            123123123123
+        </div>
     </div>
 </template>
-<style>
+<style lang="css">
 
 </style>
 <script>
+
     export default{
         data(){
             return{
                 msg:'hello vue'
             }
         },
+        components:{
+
+        }
     }
 </script>

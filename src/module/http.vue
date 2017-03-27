@@ -1,5 +1,8 @@
 <template>
     <div>
+        <gg-header >
+
+        </gg-header>
         <mt-button @click.native="getTime" size="large" type="danger">{{msg}}</mt-button>
     </div>
 </template>

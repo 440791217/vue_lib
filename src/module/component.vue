@@ -1,5 +1,8 @@
 <template>
     <div id="example">
+        <gg-header >
+
+        </gg-header>
         <div>
             <h1>我是父组件的标题</h1>
             <!--<my-component>-->

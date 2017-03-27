@@ -14,25 +14,32 @@ import textComponent1 from './module/component1.vue'
 import Activity from './module/baseactivity.vue'
 import Nav from './module/nav.vue'
 import vrouter from './module/router.vue'
+import testMenu from './module/menu.vue'
+import testPicker from './module/picker.vue'
+import testRating from './module/rating.vue'
 import log from 'mark_logger'
+import ggMoment from './lib/moment/moment'
+import './lib/app/app.css'
+// import testMenu from 'module/menu.vue'
 
 /*
-log
+ log
  */
 import gglog from './lib/log/log'
 Vue.use(gglog);
 Vue.use(MintUI);
 Vue.use(VueRouter);
+Vue.use(ggMoment);
 
 /*
-toast
+ toast
  */
 import toast from './lib/toast/toast'
 
 Vue.use(toast);
 
 /*
-router
+ router
  */
 // 0. 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
 
@@ -46,61 +53,69 @@ router
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-    { name: 'httpClient', component:testhttp },
-    { name: 'toast', component: testtoast },
-    { name: 'header',component:testheader},
-    { name:'pull_down',component:pull_down},
-    { name:'component',component:textComponent},
-    { name:'component1',component:textComponent1},
-    { name:'Activity',component:Activity},
-    { name:'nav',component:Nav},
-    { name:'router',component:vrouter},
+    {name: 'httpClient', component: testhttp},
+    {name: 'toast', component: testtoast},
+    {name: 'header', component: testheader},
+    {name: 'pull_down', component: pull_down},
+    {name: 'component', component: textComponent},
+    {name: 'component1', component: textComponent1},
+    {name: 'Activity', component: Activity},
+    {name: 'nav', component: Nav},
+    {name: 'router', component: vrouter},
+    {name:'index',component:testMenu},
+    {name:'stars',component:testPicker},
+    {name:'rating',component:testRating},
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 const router = new VueRouter({
     // routes // （缩写）相当于 routes: routes
-    routes:ggRouter.configRouter(
+    routes: ggRouter.configRouter(
         {
-            array:routes
+            array: routes
         }
     )
 })
-Vue.use(ggRouter,{router:router});
+Vue.use(ggRouter, {router: router});
 
 /*
-nav
+ nav
  */
 Vue.use(ggNav);
 
 
 /*
-http
+ http
  */
 import httpClient from './lib/http/http'
 import config from './lib/sys/sys'
 
 Vue.use(httpClient);
-var that=Vue.prototype.HttpClient;
+var that = Vue.prototype.HttpClient;
 that.httpUrl = config.site.httpUrl;
-log.d("httpClient.httpUrl:"+that.httpUrl)
+log.d("httpClient.httpUrl:" + that.httpUrl)
 that.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
 that.reqOptions = {
     headers: that.headers
 }
 
 
-
 // 4. 创建和挂载根实例。
 // 记得要通过 router 配置参数注入路由，
 // 从而让整个应用都有路由功能
 
+import ggPullDown from './component/pulldown/pulldown.vue'
+import ggHeader from "./component/header/header.vue"
+import showRatings from "./component/rating/showRatings.vue"
+Vue.component(ggPullDown.name,ggPullDown);
+Vue.component(ggHeader.name,ggHeader);
+Vue.component('show-ratings',showRatings);
 //
 new Vue({
-  router,
-  el: '#app',
-  render: h => h(App)
-}).$mount('#app')
+    router,
+    el: '#app',
+    render: h => h(App),
+})
 
 

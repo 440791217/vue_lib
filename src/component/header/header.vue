@@ -1,9 +1,9 @@
 <template>
-    <mt-header v-bind:title=title>
+    <mt-header v-bind:title=title fixed>
 
         <p slot="left">
             <slot name="left">
-                <mt-button icon="back">
+                <mt-button @click="back" icon="back">
 
                 </mt-button>
             </slot>
@@ -23,11 +23,30 @@
 <script>
 
     export default{
+        name: 'gg-header',
         data(){
-            return{
-                msg:"2"
+            return {
+                msg: "2",
             }
         },
-        props:["title"]
+        methods: {
+            back(){
+                if (this.onBack == undefined) {
+                    this.ggRouter.go();
+
+                } else {
+
+                    this.onBack();
+                }
+            }
+        },
+        props: {
+            title: {
+                default: ""
+            },
+            onBack: {
+
+            }
+        }
     }
 </script>
