@@ -1,7 +1,7 @@
 {
   "name": "mark_vue_lib",
   "description": "mark",
-  "version": "1.0.13",
+  "version": "1.0.19",
   "author": "mark",
   "private": false,
   "scripts": {
@@ -16,7 +16,8 @@
     "mint-ui": "^2.1.0",
     "moment": "^2.17.1",
     "vue-resource": "^1.0.3",
-    "vue-router": "^2.2.0"
+    "vue-router": "^2.2.0",
+    "vuex": "^2.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -30,6 +31,7 @@
     "vue-loader": "^10.0.0",
     "vue-template-compiler": "^2.1.0",
     "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0"
+    "webpack-dev-server": "^2.2.0",
+    "weui": "^1.1.1"
   }
 }

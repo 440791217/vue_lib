@@ -13,6 +13,7 @@
 
 <script>
     export default {
+        name:'gg-rating-star',
         props: {
           max: '',
           disabled: ''

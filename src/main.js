@@ -19,18 +19,90 @@ import testPicker from './module/picker.vue'
 import testRating from './module/rating.vue'
 import log from 'mark_logger'
 import ggMoment from './lib/moment/moment'
-import './lib/app/app.css'
+import './style/scss/app.scss'
+import testStore from './module/store.vue'
+// import 'weui'
+// import {ggApp}from'./lib/app/app'
+import {Context} from './lib/context/context'
 // import testMenu from 'module/menu.vue'
+
+// window.ggContext=function () {
+//     return new Context();
+// };
+// console.log("asd:"+Context.prototype.isDebug);
+// window.wait=function () {
+//     return '1234';
+// }
+
 
 /*
  log
  */
 import gglog from './lib/log/log'
+import Vuex from 'vuex'
+Vue.use(Vuex);
+
+const moduleA={
+    state:{
+        count:10,
+        cc:1
+    },
+    mutations: {
+        increment (state) {
+            console.log('cc:'+state.cc);
+            console.log("local count:"+state.count);
+            state.count++
+        },
+        decrement(state){
+
+            state.count--
+        }
+    },
+    getters:{
+        show(state){
+            console.log("state count:"+state.cc);
+            return state.count
+        }
+    },
+    actions:{
+        bbb(context){
+            context.commit('increment');
+        }
+    }
+}
+
+const store = new Vuex.Store({
+    modules:{
+      a:moduleA,
+    },
+    state: {
+        count: 0
+    },
+    // getters:{
+    //         show(state){
+    //             console.log("state count:"+state.cc);
+    //             return state.count
+    //         }
+    // },
+    mutations: {
+        // increment (state) {
+        //     state.count++
+        // },
+        // decrement(state){
+        //     state.count--
+        // }
+    },
+    actions:{
+        bbb:function(){
+            console.log("cao ni ma");
+        }
+    }
+})
+Vue.prototype.store=store;
 Vue.use(gglog);
 Vue.use(MintUI);
 Vue.use(VueRouter);
 Vue.use(ggMoment);
-
 /*
  toast
  */
@@ -65,6 +137,7 @@ const routes = [
     {name:'index',component:testMenu},
     {name:'stars',component:testPicker},
     {name:'rating',component:testRating},
+    {name:'store',component:testStore},
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
@@ -114,6 +187,7 @@ Vue.component('show-ratings',showRatings);
 //
 new Vue({
     router,
+    store,
     el: '#app',
     render: h => h(App),
 })
