@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "js-base64": "^2.1.9",
+    "lodash": "^4.17.4",
     "mark_cltdata": "^1.0.2",
     "mark_logger": "^1.0.4",
     "md5": "^2.2.1",
     "mint-ui": "^2.1.0",
     "moment": "^2.17.1",
+    "store": "^2.0.4",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.2.0",
     "vuex": "^2.3.0"

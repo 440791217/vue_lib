@@ -21,18 +21,13 @@ import log from 'mark_logger'
 import ggMoment from './lib/moment/moment'
 import './style/scss/app.scss'
 import testStore from './module/store.vue'
+import ggStore from './lib/storage/storage'
+import testStorage from  './module/storage.vue'
 // import 'weui'
 // import {ggApp}from'./lib/app/app'
 import {Context} from './lib/context/context'
 // import testMenu from 'module/menu.vue'
-
-// window.ggContext=function () {
-//     return new Context();
-// };
-// console.log("asd:"+Context.prototype.isDebug);
-// window.wait=function () {
-//     return '1234';
-// }
+Vue.use(ggStore);
 
 
 /*
@@ -138,6 +133,7 @@ const routes = [
     {name:'stars',component:testPicker},
     {name:'rating',component:testRating},
     {name:'store',component:testStore},
+    {name:'storage',component:testStorage},
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置
@@ -169,19 +165,16 @@ var that = Vue.prototype.HttpClient;
 that.httpUrl = config.site.httpUrl;
 log.d("httpClient.httpUrl:" + that.httpUrl)
 that.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
-that.reqOptions = {
-    headers: that.headers
-}
 
 
 // 4. 创建和挂载根实例。
 // 记得要通过 router 配置参数注入路由，
 // 从而让整个应用都有路由功能
 
-import ggPullDown from './component/pulldown/pulldown.vue'
+import ggLoadMore from './component/loadmore/loadmore.vue'
 import ggHeader from "./component/header/header.vue"
 import showRatings from "./component/rating/showRatings.vue"
-Vue.component(ggPullDown.name,ggPullDown);
+Vue.component(ggLoadMore.name,ggLoadMore);
 Vue.component(ggHeader.name,ggHeader);
 Vue.component('show-ratings',showRatings);
 //

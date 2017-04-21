@@ -3,8 +3,9 @@
  */
 var MD5 = require("md5")
 var Http = require("vue-resource")
-var cltData= require('mark_cltdata')
+var cltData = require('mark_cltdata')
 var log = require("mark_logger")
+var _ = require('lodash')
 
 
 function httpClient() {
@@ -18,12 +19,12 @@ function httpClient() {
             httpUrl: undefined,
             headers: undefined,
             loading: false,
-            progress:undefined,
-            toast:undefined,
-            fap:{
-
-            },
-            post:post,
+            progress: undefined,
+            toast: undefined,
+            fap: {},
+            isIdle: true,
+            counts: 0,
+            post: post,
         }
 
 
@@ -33,6 +34,23 @@ function httpClient() {
             var f_content = req.f_content != undefined ? req.f_content : {};
             var f_callback = req.f_callback;
             var f_show_loading = req.f_show_loading != undefined ? req.f_show_loading : true;
+            var reqOptions = {
+                headers: config.headers,
+                before: function (request) {
+                    // abort previous request, if exists
+                    if (this.previousRequest) {
+                        this.previousRequest.abort();
+                    }
+                    // console.log('before');
+                    // set previous request on Vue instance
+                    this.previousRequest = request;
+                }
+            }
+            var f_id;
+            if (_.isNumber(config.counts)) {
+                f_id = ++config.counts;
+            }
+
 
             f_show_loading = config.loading && f_show_loading;
 
@@ -44,24 +62,35 @@ function httpClient() {
             log.d("data:" + data);
 
             function succ(rsp) {
+
+                if (config.counts && f_id < config.counts)
+                {
+                    log.e("http succ cancel");
+                    return;
+                }
                 doBefore();
                 exe(rsp, f_callback);
                 doAfter();
             }
 
             function err(rsp) {
+                if (config.counts && f_id < config.counts) {
+                    log.e("http err cancel");
+                    return;
+                }
                 doBefore();
-                if (f_callback.error!=undefined) {
+                if (f_callback.error != undefined) {
                     f_callback.error(error);
                 }
                 doAfter();
             }
 
-            Vue.http.post(f_url, data, config.reqOptions).then(succ,err);
+
+            Vue.http.post(f_url, data, reqOptions).then(succ, err);
 
 
             if (f_show_loading) {
-                if(config.progress!=undefined)
+                if (config.progress != undefined)
                     config.progress.show()
             }
 
@@ -70,11 +99,11 @@ function httpClient() {
             }
 
             function doAfter() {
-                if (f_callback.then!=undefined) {
+                if (f_callback.then != undefined) {
                     f_callback.then();
                 }
                 if (f_show_loading) {
-                    if(config.progress!=undefined)
+                    if (config.progress != undefined)
                         config.progress.close()
                 }
             }
@@ -86,7 +115,7 @@ function httpClient() {
             log.d("encrypt start");
             var key, encryptxt, out, cleartxt;
             cleartxt = JSON.stringify(clear);
-            log.d("cleartxt:" + cleartxt+"--Base_ACCESSTOKEN:"+config.Base_ACCESSTOKEN);
+            log.d("cleartxt:" + cleartxt + "--Base_ACCESSTOKEN:" + config.Base_ACCESSTOKEN);
             key = MD5(cleartxt + config.Base_ACCESSTOKEN);
             encryptxt = cltData.cryptData(cleartxt, key);
             // log.d("encryptxt:" + encryptxt);
@@ -121,11 +150,11 @@ function httpClient() {
                 case 200:
 
                     if (ResultCode == '0000') {
-                        if (handler.succ!=undefined) {
+                        if (handler.succ != undefined) {
                             handler.succ(body, ResultCode, Message);
                         }
                     } else if (ResultCode == '1013') {
-                        if(errFun!=undefined){
+                        if (errFun != undefined) {
                             errFun();
                         }
                     }
@@ -133,10 +162,10 @@ function httpClient() {
                     if (ResultCode == '0000') {
 
                     } else {
-                        if (handler.fail!=undefined) {
+                        if (handler.fail != undefined) {
                             handler.fail(body, ResultCode, Message);
                         } else {
-                            if(config.toast!=undefined){
+                            if (config.toast != undefined) {
                                 config.toast.show({
                                     f_message: Message
                                 })
@@ -152,9 +181,8 @@ function httpClient() {
     }
 
 
-
     return {
-        install:install
+        install: install
     }
 
 }

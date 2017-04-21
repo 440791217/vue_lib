@@ -1,14 +1,17 @@
 <template>
     <div>
-        <gg-header >
+        <gg-header>
 
         </gg-header>
         <div class="gg page-main">
-            <gg-pull-down :pullDown="pullDown">
+            <mt-button type="default" @click="go">go</mt-button>
+            <gg-load-more ref="refresh">
                 <div slot="items">
-                    <span>items</span>
+                    <div v-for="(item,index) in $refs.refresh.list" style="font-size: 20px;">
+                        {{index}}-{{item.F_NAME}}
+                    </div>
                 </div>
-            </gg-pull-down>
+            </gg-load-more>
         </div>
 
     </div>
@@ -21,26 +24,80 @@
 <script type="text/babel">
 
     import {Context} from '../lib/context/context'
-//    ggContext();
-    var context=new Context();
 
-    context.data=function(){
+    var context = new Context();
+    context.data = function () {
         return {
             list: [],
             topStatus: '',
+            handlers: {},
             wrapperHeight: 0,
-            msg:'1222234333433',
+            msg: '1222234333433',
         }
     };
-
-    context.methods={
-        pullDown:function(id){
-            console.log('pull up success');
-
+    context.methods = {
+        pullDown: function () {
+            JS(this).onRefresh();
+        },
+        pullUp: function () {
+            JS(this).onLoad();
+        },
+        go:function(){
+            this.ggRouter.push({
+                f_name:'header',
+            })
         }
     }
-    context.onResume=function (context) {
-        console.log("msg:"+context.contextId);
+    context.onResume = function (context) {
+        this.$refs.refresh.rows = 20;
+        console.log("msg:" + context.contextId);
+    }
+
+    function JS(context) {
+
+        function onRefresh() {
+            context.list = [];
+            context.$refs.refresh.page = -1;
+            context.HttpClient.post(a015(1));
+        }
+
+        function onLoad() {
+            context.HttpClient.post(a015(2));
+        }
+
+        function a015(type) {
+            function succ(body) {
+                context.list = context.$refs.refresh.concat(context.list, body.recs)
+            }
+
+            function then() {
+                if (type == 1) {
+                    context.$refs.refresh.onCompleteRefresh();
+                } else if (type == 2) {
+                    context.$refs.refresh.onCompleteLoad();
+                }
+
+            }
+
+            var cmd = {
+                rows: context.$refs.refresh.rows,
+                page: context.$refs.refresh.page,
+            }
+
+            return {
+                f_suffix: 'a015',
+                f_content: cmd,
+                f_callback: {
+                    succ: succ,
+                    then: then,
+                }
+            }
+        }
+
+        return {
+            onRefresh: onRefresh,
+            onLoad: onLoad
+        }
     }
 
     export default context;

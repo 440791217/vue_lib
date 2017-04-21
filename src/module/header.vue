@@ -1,19 +1,15 @@
 <template>
 
-        <!--<gg-header >-->
+        <gg-header >
 
-        <!--</gg-header>-->
+        </gg-header>
 
-        <gg-pull-down>
-
-        </gg-pull-down>
 
 </template>
 <style>
 
 </style>
 <script>
-    import ggRefreshLayout from '../component/loadmore/loadmore.vue'
 
     export default{
         data(){

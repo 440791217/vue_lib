@@ -68,6 +68,10 @@
         {
             value:'store',
             text:'store',
+        },
+        {
+            value:'storage',
+            text:'storage'
         }
     ]
 

@@ -91,17 +91,19 @@
         name: 'gg-header',
         data(){
             return {
-                msg: "2",
+
             }
         },
         methods: {
             back(){
                 if (this.onBack == undefined) {
                     this.ggRouter.go();
-
                 } else {
-
                     this.onBack();
+                }
+
+                if(this.HttpClient){
+                    this.HttpClient.counts++;
                 }
             }
         },
