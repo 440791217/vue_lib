@@ -6,12 +6,6 @@
                 <mt-button size="large" type="primary" @click="go(item)" v-if="index%2!=0">{{item.value}}</mt-button>
 
         </div>
-        <div style="height: 10rem;" class="backaa">
-            <span>
-                {{count}}
-            </span>
-        </div>
-
     </div>
 </template>
 

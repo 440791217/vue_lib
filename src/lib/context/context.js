@@ -106,6 +106,11 @@ Context.prototype = {
     isDebug: true,
 }
 
+// Context.bb=1;
+// var d=new Context();
+// console.log("bb:"+Context.bb);
+// console.log("prototype bb:"+Context.prototype.bb);
+// console.log("dd bb:"+d.bb);
 
 export {
     Context as Context
