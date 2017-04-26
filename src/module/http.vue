@@ -1,9 +1,34 @@
 <template>
     <div>
+
         <gg-header >
 
         </gg-header>
-        <mt-button @click.native="getTime" size="large" type="danger">{{msg}}</mt-button>
+
+        <div class="gg page-main">
+            <mt-button @click.native="getTime" size="large" type="danger">{{msg}}</mt-button>
+            <button class="test11">
+                123123
+            </button>
+
+            <div v-if="msg===0">
+                if msg ==0
+            </div>
+            <div>
+                <button @click="add">
+                    add
+                </button>
+                <button @click="sub">
+                    sub
+                </button>
+            </div>
+            <div>
+                <div v-for="item in list">
+                    {{item}}
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 <style>
@@ -14,10 +39,26 @@
     export default{
         data(){
             return {
-                msg: 'tddddsadas23'
+                msg: 0,
+                list:[
+                    1,2,3,4,
+                ]
             }
         },
         methods: {
+
+            beforeCreate(){
+              console.log('beforeCreate');
+            },
+            destoryed(){
+                console.log('destory');
+            },
+            add(){
+              this.msg++;
+            },
+            sub(){
+                this.msg--;
+            },
             s001() {
                 function succ(body) {
 

@@ -17,6 +17,7 @@ import vrouter from './module/router.vue'
 import testMenu from './module/menu.vue'
 import testPicker from './module/picker.vue'
 import testRating from './module/rating.vue'
+// import log from 'mark_logger'
 import log from 'mark_logger'
 import ggMoment from './lib/moment/moment'
 import './style/scss/app.scss'
@@ -29,11 +30,15 @@ import {Context} from './lib/context/context'
 // import testMenu from 'module/menu.vue'
 Vue.use(ggStore);
 
+console.log("%c%s",
+    "color: green;font-size: 24px;",
+    "你是不可能比作者帅的！");
+
 
 /*
  log
  */
-import gglog from './lib/log/log'
+import gglog from '../dist/log'
 import Vuex from 'vuex'
 Vue.use(Vuex);
 

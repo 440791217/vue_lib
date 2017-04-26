@@ -72,12 +72,9 @@
         methods: {
             loadTop(){
                 this.topLoadStatus = 'loading';
-                if (this.pullDown) {
-                    this.pullDown();
-                    console.log("allLoaded:" + this.allLoaded);
-                } else {
-                    this.send(this, 1);
-                }
+                this.list = [];
+                this.page = -1;
+                this.send(this, 1);
             },
             handleTopChange(status) {
                 this.topStatus = status;
@@ -90,12 +87,7 @@
             },
             loadBottom(){
                 this.topLoadStatus = 'loading';
-                if (this.pullUp) {
-                    this.pullUp();
-                    console.log("load bottom");
-                } else {
                     this.send(this, 2);
-                }
 
             },
             handleBottomChange(status) {
@@ -131,7 +123,6 @@
 
                 switch (type) {
                     case 1:
-                        context.list=[];
                         break;
                     case 2:
                         break;
@@ -183,12 +174,6 @@
             }
         },
         props: {
-            pullDown: {
-                default: undefined,
-            },
-            pullUp: {
-                default: undefined,
-            },
             cmd: {
                 default: undefined,
             },

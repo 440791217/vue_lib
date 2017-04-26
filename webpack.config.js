@@ -1,21 +1,44 @@
 var path = require('path')
 var webpack = require('webpack')
+var entry,output;
 
-module.exports = {
-    entry: {
-        main: './src/main.js',
-        // http:'./src/lib/http/http.js',
-        log:'./src/lib/log/log.js',
-        // mint:'./src/lib/mint/mint.js',
-        // nav:'./src/lib/nav/nav.js',
-        // router:'./src/lib/router/router.js',
-        // toast:'./src/lib/toast/toast.js',
-    },
-    output: {
+if(process.env.NODE_ENV==='lib'){
+    entry={
+        log:'./src/lib/log/log.js'
+    }
+    output={
         path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist/',
-        filename: '[name].js'
-    },
+            publicPath: '/dist/',
+            filename: '[name].js',
+            library: '[name]',
+            libraryTarget: 'umd',
+    }
+}else{
+    entry={
+        main:'./src/main.js'
+    }
+    output={
+        path: path.resolve(__dirname, './dist'),
+            publicPath: '/dist/',
+            filename: '[name].js',
+    }
+}
+
+
+
+console.log("env:"+process.env.NODE_ENV);
+// {
+//     main: './src/main.js',
+//         // http:'./src/lib/http/http.js',
+//         log:'./src/lib/log/log.js',
+//     // mint:'./src/lib/mint/mint.js',
+//     // nav:'./src/lib/nav/nav.js',
+//     // router:'./src/lib/router/router.js',
+//     // toast:'./src/lib/toast/toast.js',
+// }
+module.exports = {
+    entry: entry,
+    output: output,
     module: {
         rules: [
             {
@@ -68,7 +91,7 @@ module.exports = {
     devtool: '#eval-source-map'
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production'||process.env.NODE_ENV === 'lib') {
     module.exports.devtool = '#source-map'
     // http://vue-loader.vuejs.org/en/workflow/production.html
     module.exports.plugins = (module.exports.plugins || []).concat([
@@ -77,12 +100,12 @@ if (process.env.NODE_ENV === 'production') {
                 NODE_ENV: '"production"'
             }
         }),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     sourceMap: true,
-        //     compress: {
-        //         warnings: false
-        //     }
-        // }),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true,
+            compress: {
+                warnings: false
+            }
+        }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
         })

@@ -51,19 +51,19 @@
         },
         methods: {
             openToast() {
-//                this.ggToast.show({
-//                    f_message: '1111' + this.ggMoment("20160102", "YYYYMMDD").format("YYYY-MM-DD"),
-//                });
-                var event = document.createEvent('HTMLEvents');  //调用document对象的 createEvent 方法得到一个event的对象实例。
-                event.initEvent("aaaa", true, true);
-
-                if(mark){
-                    console.log('mark is defined');
-                }else{
-                    console.log('mark is undefined');
-                }
-
-                mark.dispatchEvent(event);
+                this.ggToast.show({
+                    f_message: '1111' + this.ggMoment("20160102", "YYYYMMDD").format("YYYY-MM-DD"),
+                });
+//                var event = document.createEvent('HTMLEvents');  //调用document对象的 createEvent 方法得到一个event的对象实例。
+//                event.initEvent("aaaa", true, true);
+//
+//                if(mark){
+//                    console.log('mark is defined');
+//                }else{
+//                    console.log('mark is undefined');
+//                }
+//
+//                mark.dispatchEvent(event);
             },
             openToastWithIcon() {
 //                this.ggToast.show("2222");

@@ -4,12 +4,15 @@
 
         </gg-header>
         <div class="gg page-main">
-            <mt-button type="default" @click="go">go</mt-button>
+            <!--<mt-button type="default" @click="go">go</mt-button>-->
             <gg-load-more ref="refresh">
                 <div slot="items">
-                    <div v-for="(item,index) in $refs.refresh.list" style="font-size: 20px;">
-                        {{index}}-{{item.F_NAME}}
+                    <div v-if="init">
+                        <div v-for="(item,index) in $refs.refresh.list" style="font-size: 20px;">
+                            {{index}}-{{item.F_NAME}}
+                        </div>
                     </div>
+
                 </div>
             </gg-load-more>
         </div>
@@ -28,6 +31,7 @@
     var context = new Context();
     context.data = function () {
         return {
+            init:false,
             list: [],
             topStatus: '',
             handlers: {},
@@ -51,6 +55,11 @@
     context.onResume = function (context) {
         this.$refs.refresh.rows = 20;
         console.log("msg:" + context.contextId);
+        this.init=true;
+    }
+
+    context.onPause=function(context){
+        this.init=false;
     }
 
     function JS(context) {

@@ -79,7 +79,7 @@
     context.methods={
         go(item){
             this.ggRouter.push({
-                f_name:item.value
+                f_name:item.value,
             });
         }
     }
@@ -87,6 +87,12 @@
         count:function () {
             return this.store.state.count;
         }
+    }
+
+    context.onResume=function(context){
+        this.Logger.e("haha");
+        this.Logger.i("haha");
+        this.Logger.d("haha");
     }
 
     export default context;
