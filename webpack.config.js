@@ -26,9 +26,7 @@ if (process.env.NODE_ENV === 'lib') {
     }
 }
 
-plugins = [
-    new ExtractTextPlugin("/style/styles.css"),
-]
+plugins = []
 
 
 console.log("env:" + process.env.NODE_ENV);
@@ -66,10 +64,24 @@ module.exports = {
             },
             {
                 test: /\.(css|scss)$/,
-                use: ExtractTextPlugin.extract({
-                    fallback:"style-loader",
-                    use: ["css-loader", "postcss-loader"]
-                }),
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader'
+                    }
+                ]
+                // use: ExtractTextPlugin.extract({
+                //     fallback:"style-loader",
+                //     use: ["css-loader", "postcss-loader"]
+                // }),
 
             },
         ]
