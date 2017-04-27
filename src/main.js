@@ -38,7 +38,7 @@ console.log("%c%s",
 /*
  log
  */
-import gglog from '../dist/log'
+import gglog from './lib/log/log'
 import Vuex from 'vuex'
 Vue.use(Vuex);
 

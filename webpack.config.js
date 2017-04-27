@@ -1,41 +1,38 @@
 var path = require('path')
 var webpack = require('webpack')
-var entry,output;
+var glob = require('glob')
+var log = require('mark_logger')
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
+var entry, output, plugins;
 
-if(process.env.NODE_ENV==='lib'){
-    entry={
-        log:'./src/lib/log/log.js'
-    }
-    output={
+
+if (process.env.NODE_ENV === 'lib') {
+    entry = getEntry("./src/lib/**/*.js")
+    output = {
         path: path.resolve(__dirname, './dist'),
-            publicPath: '/dist/',
-            filename: '[name].js',
-            library: '[name]',
-            libraryTarget: 'umd',
+        publicPath: '/dist/',
+        filename: 'js/[name].js',
+        library: '[name]',
+        libraryTarget: 'umd',
     }
-}else{
-    entry={
-        main:'./src/main.js'
+} else {
+    entry = {
+        main: './src/main.js'
     }
-    output={
+    output = {
         path: path.resolve(__dirname, './dist'),
-            publicPath: '/dist/',
-            filename: '[name].js',
+        publicPath: '/dist/',
+        filename: '[name].js',
     }
 }
 
+plugins = [
+    new ExtractTextPlugin("/style/styles.css"),
+]
 
 
-console.log("env:"+process.env.NODE_ENV);
-// {
-//     main: './src/main.js',
-//         // http:'./src/lib/http/http.js',
-//         log:'./src/lib/log/log.js',
-//     // mint:'./src/lib/mint/mint.js',
-//     // nav:'./src/lib/nav/nav.js',
-//     // router:'./src/lib/router/router.js',
-//     // toast:'./src/lib/toast/toast.js',
-// }
+console.log("env:" + process.env.NODE_ENV);
+
 module.exports = {
     entry: entry,
     output: output,
@@ -69,13 +66,15 @@ module.exports = {
             },
             {
                 test: /\.(css|scss)$/,
-                use: [
-                    { loader: "style-loader" },
-                    { loader: "css-loader" },
-                ],
+                use: ExtractTextPlugin.extract({
+                    fallback:"style-loader",
+                    use: ["css-loader", "postcss-loader"]
+                }),
+
             },
         ]
     },
+    plugins: plugins,
     resolve: {
         alias: {
             'vue$': 'vue/dist/vue.common.js'
@@ -91,7 +90,7 @@ module.exports = {
     devtool: '#eval-source-map'
 }
 
-if (process.env.NODE_ENV === 'production'||process.env.NODE_ENV === 'lib') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'lib') {
     module.exports.devtool = '#source-map'
     // http://vue-loader.vuejs.org/en/workflow/production.html
     module.exports.plugins = (module.exports.plugins || []).concat([
@@ -110,4 +109,29 @@ if (process.env.NODE_ENV === 'production'||process.env.NODE_ENV === 'lib') {
             minimize: true
         })
     ])
+}
+
+/*
+ extract entry
+ */
+function getEntry(globPath) {
+
+    var array = {}
+
+
+    /*
+     获取地址
+     */
+
+    glob.sync(globPath).forEach(function (entry) {
+
+        var key = path.basename(entry, '.js');
+        array[key] = entry;
+    })
+
+    for (var key in array) {
+        log.i("entry---" + key + ":" + array[key]);
+    }
+
+    return array;
 }
