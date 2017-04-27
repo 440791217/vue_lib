@@ -1,9 +1,8 @@
 {
   "name": "mark_vue_lib",
   "description": "mark",
-  "version": "1.0.26",
+  "version": "1.0.29",
   "author": "mark",
-  "main": "./dist",
   "private": false,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --host 192.168.4.136 --port 8080",

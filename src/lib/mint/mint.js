@@ -1,12 +1,7 @@
 /**
  * Created by mark on 2017/2/5.
  */
+import MintUI from 'mint-ui';
+import 'mint-ui/lib/style.css'
 
-function toast() {
-    
-    function install() {
-        
-    }
-    
-    
-}
+export default MintUI;
