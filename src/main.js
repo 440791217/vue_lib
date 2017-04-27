@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import MintUI from './lib/mint/mint';
-import ggRouter from "./lib/router/router"
+import {ggRouter,VueRouter} from "./lib/router/router"
 import ggNav from "./lib/nav/nav"
 // import 'mint-ui/lib/style.css'
-import VueRouter from 'vue-router'
 import testhttp from './module/http.vue'
 import testtoast from './module/toast.vue'
 import testheader from './module/header.vue'
@@ -101,7 +100,6 @@ const store = new Vuex.Store({
 Vue.prototype.store=store;
 Vue.use(gglog);
 Vue.use(MintUI);
-Vue.use(VueRouter);
 Vue.use(ggMoment);
 /*
  toast

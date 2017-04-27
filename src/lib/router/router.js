@@ -1,6 +1,8 @@
 /**
  * Created by mark on 2017/3/6.
  */
+import VueRouter from 'vue-router'
+
 function router() {
 
     const TYPE_ROUTER_PUSH='1';
@@ -9,6 +11,7 @@ function router() {
     var router;
 
     function install(Vue,option) {
+        Vue.use(VueRouter);
         Vue.prototype.ggRouter = {
             push:push,
             replace:replace,
@@ -127,4 +130,9 @@ function router() {
     }
 }
 
-export default router();
+var ggRouter=router();
+
+export {
+    VueRouter,
+    ggRouter
+}
