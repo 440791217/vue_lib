@@ -66,7 +66,7 @@ function Context() {
     }
 
     /*
-     custom life cycle
+     custom life cycle desperate
      */
     function onStart(context) {
 
@@ -81,6 +81,39 @@ function Context() {
 
     function onPause(context) {
     }
+
+    /*
+    custom life cycle
+     */
+
+    function onBeforeCreate(context) {
+
+    }
+
+    function onCreated(context) {
+
+    }
+
+    function onBeforeMount(context) {
+
+    }
+
+    function onMounted(context) {
+
+    }
+
+    function onBeforeDestory(context) {
+
+    }
+
+    function onDestoryed(context) {
+
+    }
+
+
+    /*
+
+     */
 
     function generateId() {
         var id = "guoguangId:" + (Context.prototype.serialId += 1);

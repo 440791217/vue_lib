@@ -15,23 +15,23 @@
 7 silly cache add   rawSpec: '.',
 7 silly cache add   spec: 'F:\\work\\github\\workspace\\vue_lib',
 7 silly cache add   type: 'directory' }
-8 verbose addLocalDirectory C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.31\package.tgz not in flight; packing
+8 verbose addLocalDirectory C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.33\package.tgz not in flight; packing
 9 verbose correctMkdir C:\Users\mark\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
-10 info lifecycle mark_vue_lib@1.0.31~prepublish: mark_vue_lib@1.0.31
-11 silly lifecycle mark_vue_lib@1.0.31~prepublish: no script for prepublish, continuing
-12 verbose tar pack [ 'C:\\Users\\mark\\AppData\\Roaming\\npm-cache\\mark_vue_lib\\1.0.31\\package.tgz',
+10 info lifecycle mark_vue_lib@1.0.33~prepublish: mark_vue_lib@1.0.33
+11 silly lifecycle mark_vue_lib@1.0.33~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ 'C:\\Users\\mark\\AppData\\Roaming\\npm-cache\\mark_vue_lib\\1.0.33\\package.tgz',
 12 verbose tar pack   'F:\\work\\github\\workspace\\vue_lib' ]
-13 verbose tarball C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.31\package.tgz
+13 verbose tarball C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.33\package.tgz
 14 verbose folder F:\work\github\workspace\vue_lib
-15 verbose addLocalTarball adding from inside cache C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.31\package.tgz
+15 verbose addLocalTarball adding from inside cache C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.33\package.tgz
 16 verbose correctMkdir C:\Users\mark\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
-17 silly cache afterAdd mark_vue_lib@1.0.31
-18 verbose afterAdd C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.31\package\package.json not in flight; writing
+17 silly cache afterAdd mark_vue_lib@1.0.33
+18 verbose afterAdd C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.33\package\package.json not in flight; writing
 19 verbose correctMkdir C:\Users\mark\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
-20 verbose afterAdd C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.31\package\package.json written
+20 verbose afterAdd C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.33\package\package.json written
 21 silly publish { name: 'mark_vue_lib',
 21 silly publish   description: 'mark',
-21 silly publish   version: '1.0.31',
+21 silly publish   version: '1.0.33',
 21 silly publish   author: { name: 'mark' },
 21 silly publish   private: false,
 21 silly publish   scripts:
@@ -71,9 +71,9 @@
 21 silly publish      weui: '^1.1.1' },
 21 silly publish   readme: '# {{ name }}\n\n> {{ description }}\n\n## Build Setup\n\n``` bash\n# install dependencies\nnpm install\n\n# serve with hot reload at localhost:8080\nnpm run dev\n\n# build for production with minification\nnpm run build\n```\n\nFor detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).\n',
 21 silly publish   readmeFilename: 'README.md',
-21 silly publish   gitHead: '3600a680e64e3fc93000cd501bd38b902c391e60',
-21 silly publish   _id: 'mark_vue_lib@1.0.31',
-21 silly publish   _shasum: 'a55d7b6340152d1964936a0162d00ab136942581',
+21 silly publish   gitHead: 'b989b694f26a91d84e30563bd275ee033d425835',
+21 silly publish   _id: 'mark_vue_lib@1.0.33',
+21 silly publish   _shasum: 'e14205f2fbc5dab6fbea480ebb5efd9a8571a87e',
 21 silly publish   _from: '.' }
 22 verbose getPublishConfig undefined
 23 silly mapToRegistry name mark_vue_lib
@@ -89,29 +89,29 @@
 26 silly mapToRegistry   type: 'tag' }
 27 silly mapToRegistry uri http://registry.npmjs.org/mark_vue_lib
 28 verbose publish registryBase http://registry.npmjs.org/
-29 silly publish uploading C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.31\package.tgz
+29 silly publish uploading C:\Users\mark\AppData\Roaming\npm-cache\mark_vue_lib\1.0.33\package.tgz
 30 verbose request uri http://registry.npmjs.org/mark_vue_lib
 31 verbose request sending authorization for write operation
-32 info attempt registry request try #1 at 14:56:34
+32 info attempt registry request try #1 at 14:24:34
 33 verbose request using bearer token for auth
-34 verbose request id 5fdd41b092df0dd6
+34 verbose request id 32d3fcda71dcefc9
 35 http request PUT http://registry.npmjs.org/mark_vue_lib
 36 http 403 http://registry.npmjs.org/mark_vue_lib
 37 verbose headers { 'content-type': 'application/json',
 37 verbose headers   'cache-control': 'max-age=300',
 37 verbose headers   'content-length': '96',
 37 verbose headers   'accept-ranges': 'bytes',
-37 verbose headers   date: 'Thu, 27 Apr 2017 06:56:42 GMT',
+37 verbose headers   date: 'Fri, 28 Apr 2017 06:24:51 GMT',
 37 verbose headers   via: '1.1 varnish',
 37 verbose headers   connection: 'keep-alive',
-37 verbose headers   'x-served-by': 'cache-nrt6135-NRT',
+37 verbose headers   'x-served-by': 'cache-nrt6131-NRT',
 37 verbose headers   'x-cache': 'MISS',
 37 verbose headers   'x-cache-hits': '0',
-37 verbose headers   'x-timer': 'S1493276199.272009,VS0,VE3150',
+37 verbose headers   'x-timer': 'S1493360681.991324,VS0,VE10365',
 37 verbose headers   vary: 'Accept-Encoding' }
 38 verbose request invalidating C:\Users\mark\AppData\Roaming\npm-cache\registry.npmjs.org\mark_vue_lib on PUT
 39 error publish Failed PUT 403
-40 verbose stack Error: "You cannot publish over the previously published version 1.0.31." : mark_vue_lib
+40 verbose stack Error: "You cannot publish over the previously published version 1.0.33." : mark_vue_lib
 40 verbose stack     at makeError (C:\Users\mark\AppData\Roaming\npm\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
 40 verbose stack     at CachingRegistryClient.<anonymous> (C:\Users\mark\AppData\Roaming\npm\node_modules\npm\node_modules\npm-registry-client\lib\request.js:252:14)
 40 verbose stack     at Request._callback (C:\Users\mark\AppData\Roaming\npm\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
@@ -130,7 +130,7 @@
 46 error node v6.5.0
 47 error npm  v3.10.7
 48 error code E403
-49 error "You cannot publish over the previously published version 1.0.31." : mark_vue_lib
+49 error "You cannot publish over the previously published version 1.0.33." : mark_vue_lib
 50 error If you need help, you may report this error at:
 50 error     <https://github.com/npm/npm/issues>
 51 verbose exit [ 1, true ]

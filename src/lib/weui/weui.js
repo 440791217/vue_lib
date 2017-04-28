@@ -3,3 +3,7 @@
  */
 import weui from 'weui.js'
 import 'weui'
+
+export {
+    weui
+}

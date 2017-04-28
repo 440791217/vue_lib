@@ -52,13 +52,13 @@
             })
         }
     }
-    context.onResume = function (context) {
+    context.onMounted = function (context) {
         this.$refs.refresh.rows = 20;
         console.log("msg:" + context.contextId);
         this.init=true;
     }
 
-    context.onPause=function(context){
+    context.onBeforeDestroy=function(context){
         this.init=false;
     }
 
