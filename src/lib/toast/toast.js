@@ -5,16 +5,15 @@ var Toast = require('mint-ui').Toast;
 
 function myToast() {
 
-    var config;
+    var config={
+        show:show,
+        position:'bottom',
+        duration:3000,
+    }
 
     function install(Vue) {
 
-        Vue.prototype.ggToast=config={
-            show:show,
-            position:'bottom',
-            duration:3000,
-        }
-
+        Vue.prototype.ggToast=config;
     }
 
 
@@ -40,7 +39,8 @@ function myToast() {
 
 
     return {
-        install:install
+        install:install,
+        config:config,
     }
 }
 module.exports=new myToast();

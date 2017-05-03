@@ -4,6 +4,63 @@
 import weui from 'weui.js'
 import 'weui'
 
+function myWeui() {
+    
+    function install(Vue) {
+        Vue.prototype.weui=weui;
+    }
+    
+    return {
+        install:install,
+    }
+}
+
+function myToast() {
+
+    var config={
+        show:show,
+        duration:3000,
+        callback:undefined,
+        className:'custom-classname',
+    }
+
+    function install(Vue) {
+        
+        if(Vue.prototype.weui){
+            
+            Vue.prototype.weui['ggToast']={
+                show:show,
+            }
+            
+        }else{
+            console.log("weui is not installed");
+            return;
+        }
+    }
+    
+    function show(data) {
+
+        var message=data.f_message;
+        var duration=data.f_duration;
+        var callback=data.f_callback;
+
+        message=message?message:"";
+        duration=duration?duration:config.duration;
+        weui.toast(message,{
+            duration:duration,
+        });
+
+    }
+    
+    return {
+        install:install,
+        config:config,
+    }
+}
+
+
 export {
-    weui
+    weui,
+    myWeui,
+    myToast,
 }
