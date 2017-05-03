@@ -166,6 +166,7 @@ import config from './lib/sys/sys'
 Vue.use(httpClient);
 var that = Vue.prototype.HttpClient;
 that.httpUrl = config.site.httpUrl;
+that.toast=Vue.prototype.ggToast;
 log.d("httpClient.httpUrl:" + that.httpUrl)
 that.headers = {'Content-Type': 'application/x-www-form-urlencoded'};
 

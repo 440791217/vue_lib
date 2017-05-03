@@ -103,7 +103,7 @@
                 }
 
                 if(this.HttpClient){
-                    this.HttpClient.counts++;
+                    this.HttpClient.isIdle=true;
                 }
             }
         },

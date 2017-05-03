@@ -63,8 +63,7 @@ function httpClient() {
 
             function succ(rsp) {
 
-                if (config.counts && f_id < config.counts)
-                {
+                if (config.counts && f_id < config.counts) {
                     log.e("http succ cancel");
                     return;
                 }
@@ -108,7 +107,7 @@ function httpClient() {
                 }
             }
 
-            log.d('f_url:' + f_url + "\r\n" + "f_content:" + f_content);
+            log.d('f_url:' + f_url );
         }
 
         function encrypt(clear) {
@@ -144,35 +143,62 @@ function httpClient() {
             var ResultCode = header['ResultCode'];
             var Message = header['Message'];
             var errFun = config.fap[ResultCode];
+            var map=handler.f_map;
 
 
             switch (status) {
                 case 200:
 
-                    if (ResultCode == '0000') {
-                        if (handler.succ != undefined) {
-                            handler.succ(body, ResultCode, Message);
-                        }
-                    } else if (ResultCode == '1013') {
-                        if (errFun != undefined) {
-                            errFun();
-                        }
-                    }
+                    if (map) {
 
-                    if (ResultCode == '0000') {
+                        log.d("map is defined");
+                        if(map[ResultCode]){
+
+                            map[ResultCode](body,ResultCode,Message);
+                            log.d("map is exe");
+                        }else{
+                            log.d("map func is undefined");
+                            if(ResultCode=='1013'&&errFun != undefined){
+                                    errFun();
+                                log.d("map func 1013 is exe");
+                            }else{
+                                if (config.toast != undefined) {
+                                    config.toast.show({
+                                        f_message: Message
+                                    })
+                                }
+                            }
+
+                        }
 
                     } else {
-                        if (handler.fail != undefined) {
-                            handler.fail(body, ResultCode, Message);
-                        } else {
-                            if (config.toast != undefined) {
-                                config.toast.show({
-                                    f_message: Message
-                                })
+                        if (ResultCode == '0000') {
+                            if (handler.succ != undefined) {
+                                handler.succ(body, ResultCode, Message);
+                            }
+                        } else if (ResultCode == '1013') {
+                            if (errFun != undefined) {
+                                errFun();
                             }
                         }
 
+                        if (ResultCode == '0000') {
+
+                        } else {
+                            if (handler.fail != undefined) {
+                                handler.fail(body, ResultCode, Message);
+                            } else {
+                                if (config.toast != undefined) {
+                                    config.toast.show({
+                                        f_message: Message
+                                    })
+                                }
+                            }
+
+                        }
                     }
+
+
                     break;
                 default:
                     break;

@@ -67,10 +67,12 @@
                 var cmd = {}
 
                 return {
-                    f_suffix: 's001',
+                    f_suffix: 's003',
                     f_content: cmd,
                     f_callback: {
-                        succ: succ
+                        f_map:{
+                            "0000":succ
+                        }
                     }
                 }
             },
