@@ -76,6 +76,11 @@
                 this.list = [];
                 this.page = -1;
                 this.refreshStatus="ok";
+
+                if(this.refreshUpdate){
+                    this.refreshUpdate();
+                }
+
                 this.send(this, 1);
             },
             handleTopChange(status) {
@@ -136,7 +141,7 @@
 
                 function gun() {
 
-                    var seq,cmd,suffix;
+                    var seq,cmd;
 
                     function succ(body) {
 
@@ -180,13 +185,12 @@
                             seq=seq+","+key;
                         }else{
                             seq=key;
-                            suffix=key;
                         }
                         cmd[key]=context.cmd[key];
                     }
 
-                    cmd[suffix].page=context.page;
-                    cmd[suffix].rows=context.rows;
+                    cmd[context.suffix].page=context.page;
+                    cmd[context.suffix].rows=context.rows;
                     cmd['seq']=seq;
 
 
@@ -221,6 +225,9 @@
             handBody:{
                 default:undefined
             },
+            refreshUpdate:{
+                default:undefined
+            }
 
 
         },
