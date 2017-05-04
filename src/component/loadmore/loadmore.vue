@@ -61,6 +61,7 @@
                 topStatus: '',
                 bottomStatus: '',
                 topLoadStatus: "idle",
+                refreshStatus:"ok",
             }
         },
         watch: {},
@@ -74,6 +75,7 @@
                 this.topLoadStatus = 'loading';
                 this.list = [];
                 this.page = -1;
+                this.refreshStatus="ok";
                 this.send(this, 1);
             },
             handleTopChange(status) {
@@ -134,11 +136,26 @@
 
                 function gun() {
 
+                    var seq,cmd;
+
                     function succ(body) {
-                        context.list = context.concat(context.list, body.recs);
+
+                        var listBody=body[context.suffix];
+
+                        if(that.handBody){
+                            that.handBody(body);
+                        }else{
+                            context.list = context.concat(context.list, listBody.recs);
+                        }
+
+
                     }
 
-                    function err(body) {
+                    function error(body) {
+
+                        if(type==1){
+                            context.refreshStatus="error";
+                        }
 
                     }
 
@@ -154,17 +171,31 @@
 
                     }
 
-                    var cmd = {
-                        page: context.page,
-                        rows: context.rows,
+                    cmd={
+
                     }
 
+                    for(var key in context.cmd){
+                        if(seq){
+                            seq=seq+","+key;
+                        }else{
+                            seq=key;
+                        }
+                        cmd[key]=context.cmd[key];
+                    }
+
+                    cmd[context.suffix].page=context.page;
+                    cmd[context.suffix].rows=context.rows;
+                    cmd['seq']=seq;
+
+
+
                     return {
-                        f_suffix: 'a015',
+                        f_suffix: "mutx",
                         f_content: cmd,
                         f_callback: {
                             succ: succ,
-                            err: err,
+                            error: error,
                             then: then,
                         }
                     }
@@ -182,23 +213,16 @@
             },
             topDistance: {
                 default: 100,
-            }
+            },
+            suffix:{
+                default:undefined,
+            },
+            handBody:{
+                default:undefined
+            },
+
 
         },
-        onResume: function (context) {
-
-            if (this.id == undefined) {
-
-            }
-
-        }
-        ,
-        onPause: function (context) {
-            if (this.id == undefined) {
-
-            }
-
-        }
     }
 
     context.fill(context, src);

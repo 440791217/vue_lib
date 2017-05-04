@@ -79,7 +79,7 @@ function httpClient() {
                 }
                 doBefore();
                 if (f_callback.error != undefined) {
-                    f_callback.error(error);
+                    f_callback.error(rsp);
                 } else {
                     if (config.toast != undefined) {
 

@@ -5,11 +5,15 @@
         </gg-header>
         <div class="gg page-main">
             <!--<mt-button type="default" @click="go">go</mt-button>-->
-            <gg-load-more ref="refresh">
+            <gg-load-more ref="refresh" suffix="a015" :cmd="cmd">
                 <div slot="items">
                     <div v-if="init">
+                        <div>
+                            {{ $refs.refresh.refreshStatus}}
+                        </div>
                         <div v-for="(item,index) in $refs.refresh.list" style="font-size: 20px;">
-                            {{index}}-{{item.F_NAME}}
+                            {{index}}-{{item.F_NAME}}  1
+
                         </div>
                     </div>
 
@@ -37,6 +41,11 @@
             handlers: {},
             wrapperHeight: 0,
             msg: '1222234333433',
+            cmd:{
+                a015:{
+
+                }
+            }
         }
     };
     context.methods = {

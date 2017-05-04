@@ -14,9 +14,6 @@ function Context() {
         beforeDestroy: beforeDestroy,
         destroyed: destroyed,
         generateId: generateId,
-        onStart:onStart,
-        onResume: onResume,
-        onPause: onPause,
         fill:fill,
     }
 
@@ -24,19 +21,24 @@ function Context() {
         if (that.isDebug) {
             console.log('beforeCreate context id:' + that.contextId);
         }
+        if(that.onBeforeCreate)
+            that.onBeforeCreate.call(this);
     }
 
     function created() {
         if (that.isDebug) {
             console.log('created context id:' + that.contextId);
         }
-        if(that.onStart)
-            that.onStart.call(this);
+        if(that.onCreated)
+            that.onCreated.call(this);
     }
 
     function beforeMount() {
         if (that.isDebug) {
             console.log('beforeMount context id:' + that.contextId);
+        }
+        if(that.onBeforeMount){
+            that.onBeforeMount.call(this);
         }
     }
 
@@ -44,16 +46,16 @@ function Context() {
         if (that.isDebug) {
             console.log('mounted context id:' + that.contextId);
         }
-        if (that.onResume)
-            that.onResume.call(this,that);
+        if (that.onMounted)
+            that.onMounted.call(this,that);
     }
 
     function beforeDestroy() {
         if (that.isDebug) {
             console.log('beforeDestroy context id:' + that.contextId);
         }
-        if(that.onPause){
-            that.onPause.call(this);
+        if(that.onBeforeDestroy){
+            that.onBeforeDestroy.call(this);
         }
     }
 
@@ -61,25 +63,8 @@ function Context() {
         if (that.isDebug) {
             console.log('destroyed context id:' + that.contextId);
         }
-        if(that.onStop)
-            that.onStop.call(this);
-    }
-
-    /*
-     custom life cycle desperate
-     */
-    function onStart(context) {
-
-    }
-
-    function onStop(context) {
-
-    }
-
-    function onResume(context) {
-    }
-
-    function onPause(context) {
+        if(that.onDestroyed)
+            that.onDestroyed.call(this);
     }
 
     /*

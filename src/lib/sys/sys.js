@@ -16,7 +16,7 @@ function SysConfig() {
             debug=false;
             ADDR_DM="http://czolympic.cn";
         }else{
-            ADDR_DM="http://192.168.40.41:89";
+            ADDR_DM="http://192.168.40.41:891";
             // ADDR_DM='http://61.132.89.94:89';
             // ADDR_DM="http://192.168.4.197:8080";
             debug=true;
