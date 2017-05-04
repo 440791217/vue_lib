@@ -147,7 +147,7 @@
 
                         var listBody=body[context.suffix];
 
-                        if(that.handBody){
+                        if(context.handBody){
                             that.handBody(body);
                         }else{
                             context.list = context.concat(context.list, listBody.recs);
