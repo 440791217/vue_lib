@@ -80,6 +80,12 @@ function httpClient() {
                 doBefore();
                 if (f_callback.error != undefined) {
                     f_callback.error(error);
+                } else {
+                    if (config.toast != undefined) {
+                        config.toast.show({
+                            f_message: Message
+                        })
+                    }
                 }
                 doAfter();
             }
@@ -107,7 +113,7 @@ function httpClient() {
                 }
             }
 
-            log.d('f_url:' + f_url );
+            log.d('f_url:' + f_url);
         }
 
         function encrypt(clear) {
@@ -143,7 +149,7 @@ function httpClient() {
             var ResultCode = header['ResultCode'];
             var Message = header['Message'];
             var errFun = config.fap[ResultCode];
-            var map=handler.f_map;
+            var map = handler.f_map;
 
 
             switch (status) {
@@ -152,17 +158,23 @@ function httpClient() {
                     if (map) {
 
                         log.d("map is defined");
-                        if(map[ResultCode]){
+                        if (map[ResultCode]) {
 
-                            map[ResultCode](body,ResultCode,Message);
+                            map[ResultCode](body, ResultCode, Message);
                             log.d("map is exe");
-                        }else{
+                        } else {
                             log.d("map func is undefined");
-                            if(ResultCode=='1013'&&errFun != undefined){
-                                    errFun();
+                            if (ResultCode == '1013' && errFun != undefined) {
+                                errFun();
                                 log.d("map func 1013 is exe");
-                            }else{
+                            } else {
                                 if (config.toast != undefined) {
+                                    var message=config.fap['errorMsg'];
+
+                                    if(!message){
+                                        message="请检查网络";
+                                    }
+
                                     config.toast.show({
                                         f_message: Message
                                     })

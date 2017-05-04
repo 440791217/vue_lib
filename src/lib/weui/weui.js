@@ -28,7 +28,7 @@ function myToast() {
         
         if(Vue.prototype.weui){
             
-            Vue.prototype.weui['ggToast']={
+            Vue.prototype.weui['ggToast']=config={
                 show:show,
             }
             
