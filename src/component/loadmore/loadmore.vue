@@ -149,9 +149,10 @@
 
                         if(context.handBody){
                             context.handBody(body);
-                        }else{
-                            context.list = context.concat(context.list, listBody.recs);
                         }
+
+                        context.list = context.concat(context.list, listBody.recs);
+
 
 
                     }
