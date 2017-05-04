@@ -136,7 +136,7 @@
 
                 function gun() {
 
-                    var seq,cmd;
+                    var seq,cmd,suffix;
 
                     function succ(body) {
 
@@ -180,12 +180,13 @@
                             seq=seq+","+key;
                         }else{
                             seq=key;
+                            suffix=key;
                         }
                         cmd[key]=context.cmd[key];
                     }
 
-                    cmd[context.suffix].page=context.page;
-                    cmd[context.suffix].rows=context.rows;
+                    cmd[suffix].page=context.page;
+                    cmd[suffix].rows=context.rows;
                     cmd['seq']=seq;
 
 
