@@ -82,6 +82,13 @@ function httpClient() {
                     f_callback.error(error);
                 } else {
                     if (config.toast != undefined) {
+
+                        var Message=config.fap["errMsg"];
+
+                        if(!Message){
+                            Message="请检查网络"
+                        }
+
                         config.toast.show({
                             f_message: Message
                         })
@@ -169,14 +176,8 @@ function httpClient() {
                                 log.d("map func 1013 is exe");
                             } else {
                                 if (config.toast != undefined) {
-                                    var message=config.fap['errorMsg'];
-
-                                    if(!message){
-                                        message="请检查网络";
-                                    }
-
                                     config.toast.show({
-                                        f_message: message
+                                        f_message: Message
                                     })
                                 }
                             }
