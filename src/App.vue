@@ -23,7 +23,10 @@
         },
         mounted(){
             this.ggRouter.push({
-                f_name:'index'
+                f_name:'index',
+                f_params:{
+                    a:1,
+                }
             });
         }
     }

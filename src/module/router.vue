@@ -18,6 +18,9 @@
                 msg:'he1l123lo vue'
             }
         },
+        mounted(){
+            this.Logger.d("router params:"+this.$route.params.F_DATA.a);
+        },
         methods:{
             back:function () {
                this.ggRouter.go();

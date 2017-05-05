@@ -5,6 +5,7 @@
 function Context() {
 
     var that = {
+        myself:this,
         contextId: Context.prototype.contextId += 1,
         isDebug: Context.prototype.isDebug,
         beforeCreate: beforeCreate,
@@ -15,6 +16,7 @@ function Context() {
         destroyed: destroyed,
         generateId: generateId,
         fill:fill,
+        routeParams:undefined,
     }
 
     function beforeCreate() {
@@ -22,15 +24,22 @@ function Context() {
             console.log('beforeCreate context id:' + that.contextId);
         }
         if(that.onBeforeCreate)
-            that.onBeforeCreate.call(this);
+            that.onBeforeCreate.call(this,that);
     }
 
     function created() {
         if (that.isDebug) {
             console.log('created context id:' + that.contextId);
         }
+
+        if(this.$route&&this.$route.params){
+            that.routeParams=this.$route.params.F_DATA;
+        }else{
+            that.routeParams={}
+        }
+
         if(that.onCreated)
-            that.onCreated.call(this);
+            that.onCreated.call(this,that);
     }
 
     function beforeMount() {
@@ -38,7 +47,7 @@ function Context() {
             console.log('beforeMount context id:' + that.contextId);
         }
         if(that.onBeforeMount){
-            that.onBeforeMount.call(this);
+            that.onBeforeMount.call(this,that);
         }
     }
 
@@ -55,7 +64,7 @@ function Context() {
             console.log('beforeDestroy context id:' + that.contextId);
         }
         if(that.onBeforeDestroy){
-            that.onBeforeDestroy.call(this);
+            that.onBeforeDestroy.call(this,that);
         }
     }
 
@@ -64,7 +73,7 @@ function Context() {
             console.log('destroyed context id:' + that.contextId);
         }
         if(that.onDestroyed)
-            that.onDestroyed.call(this);
+            that.onDestroyed.call(this,that);
     }
 
     /*

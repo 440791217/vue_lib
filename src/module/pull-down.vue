@@ -66,6 +66,7 @@
         this.$refs.refresh.rows = 20;
         console.log("msg:" + context.contextId);
         this.init=true;
+//        this.Logger.d("test:"+JSON.stringify(context.routeParams));
     }
 
     context.onBeforeDestroy=function(context){

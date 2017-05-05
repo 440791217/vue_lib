@@ -80,6 +80,9 @@
         go(item){
             this.ggRouter.push({
                 f_name:item.value,
+                f_params:{
+                    a:1,
+                }
             });
         }
     }
