@@ -1,17 +1,14 @@
-<template>
+<template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div>
         <gg-header>
 
         </gg-header>
         <div class="gg page-main">
             <!--<mt-button type="default" @click="go">go</mt-button>-->
-            <gg-load-more ref="refresh" suffix="a015" :cmd="cmd">
+            <gg-load-more ref="refresh" suffix="a015" :cmd="cmd" v-on:list="JS().onUpdateList($event)">
                 <div slot="items">
                     <div v-if="init">
-                        <div>
-                            {{ $refs.refresh.refreshStatus}}
-                        </div>
-                        <div v-for="(item,index) in $refs.refresh.list" style="font-size: 20px;">
+                        <div v-for="(item,index) in list" style="font-size: 20px;" >
                             {{index}}-{{item.F_NAME}}  1
 
                         </div>
@@ -49,17 +46,21 @@
         }
     };
     context.methods = {
-        pullDown: function () {
-            JS(this).onRefresh();
-        },
-        pullUp: function () {
-            JS(this).onLoad();
-        },
-        go:function(){
-            this.ggRouter.push({
-                f_name:'header',
-            })
+        JS(){
+            console.log('123123123');
+            return JS(this);
         }
+//        pullDown: function () {
+//            JS(this).onRefresh();
+//        },
+//        pullUp: function () {
+//            JS(this).onLoad();
+//        },
+//        go:function(){
+//            this.ggRouter.push({
+//                f_name:'header',
+//            })
+//        }
     }
     context.onMounted = function (context) {
         this.$refs.refresh.rows = 20;
@@ -112,9 +113,15 @@
             }
         }
 
+        function onUpdateList(event) {
+            console.log("list:"+JSON.stringify(event));
+            context.list=event.list;
+        }
+
         return {
             onRefresh: onRefresh,
-            onLoad: onLoad
+            onLoad: onLoad,
+            onUpdateList:onUpdateList,
         }
     }
 

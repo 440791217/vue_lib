@@ -64,7 +64,14 @@
                 refreshStatus:"ok",
             }
         },
-        watch: {},
+        watch: {
+            'list':function(list){
+                console.log('list is change');
+                this.$emit('list', {
+                    list:list
+                })
+            }
+        },
         computed: {
             isAllLoaded: function () {
                 return this.allLoaded || this.topLoadStatus == 'loading';
