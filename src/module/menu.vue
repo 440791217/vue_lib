@@ -100,27 +100,6 @@
 
     export default context;
 
-    // 现在，应用已经启动了！
-//    export default {
-//        name: 'app',
-//        data () {
-//            return {
-//                msg: 'Welcome to Your Vue.js App',
-//                options: options,
-//            }
-//        },
-//        methods:{
-//            go(item){
-//                this.ggRouter.push({
-//                   f_name:item.value
-//                });
-//            }
-//        },
-//        mounted:function(){
-//
-//        }
-//    }
-
 
 </script>
 

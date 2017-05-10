@@ -20,6 +20,7 @@ function router() {
             configRouter: configRouter,
             jsonRouter: jsonRouter,
             router:router,
+            debug:true,
         }
 
 
