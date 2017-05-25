@@ -30,7 +30,7 @@ function httpClient() {
 
         function post(req) {
 
-            var f_url = req.f_prefix!=undefined?req.f_prefix:config.httpUrl + req.f_suffix;
+            var f_url = (req.f_prefix != undefined ? req.f_prefix : config.httpUrl) + req.f_suffix;
             var f_content = req.f_content != undefined ? req.f_content : {};
             var f_callback = req.f_callback;
             var f_show_loading = req.f_show_loading != undefined ? req.f_show_loading : true;
@@ -83,10 +83,10 @@ function httpClient() {
                 } else {
                     if (config.toast != undefined) {
 
-                        var Message=config.fap["errMsg"];
+                        var Message = config.fap["errMsg"];
 
-                        if(!Message){
-                            Message="请检查网络"
+                        if (!Message) {
+                            Message = "请检查网络"
                         }
 
                         config.toast.show({
