@@ -30,7 +30,7 @@ function httpClient() {
 
         function post(req) {
 
-            var f_url = config.httpUrl + req.f_suffix;
+            var f_url = req.f_prefix?req.f_prefix:config.httpUrl + req.f_suffix;
             var f_content = req.f_content != undefined ? req.f_content : {};
             var f_callback = req.f_callback;
             var f_show_loading = req.f_show_loading != undefined ? req.f_show_loading : true;
