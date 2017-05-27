@@ -43,7 +43,6 @@ function httpClient() {
                     if (this.previousRequest) {
                         this.previousRequest.abort();
                     }
-                    // console.log('before');
                     // set previous request on Vue instance
                     this.previousRequest = request;
                 }
@@ -223,7 +222,10 @@ function httpClient() {
 
 
     return {
-        install: install
+        install: install,
+        release:function(isRelease){
+            log.open(isRelease);
+        },
     }
 
 }

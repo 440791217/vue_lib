@@ -70,6 +70,9 @@ function nav() {
 
     return {
         install: install,
+        release:function(isRelease){
+            Logger.open(isRelease);
+        },
     }
 }
 
