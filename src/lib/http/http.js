@@ -224,7 +224,7 @@ function httpClient() {
     return {
         install: install,
         release:function(isRelease){
-            log.open(isRelease);
+            log.open(!isRelease);
         },
     }
 
