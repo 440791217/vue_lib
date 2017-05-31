@@ -72,6 +72,9 @@ function router() {
             name: f_name,
             params: {
                 F_DATA: f_params,
+                T_CONFIG:{
+                    F_NAME:f_name,
+                }
             }
         }
 
