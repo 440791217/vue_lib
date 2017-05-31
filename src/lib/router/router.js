@@ -78,7 +78,7 @@ function router() {
         if (f_type == TYPE_ROUTER_PUSH)
             router.push(obj);
         else if (f_type == TYPE_ROUTER_REPLACE)
-            router.push(obj);
+            router.replace(obj);
     }
 
     /*
