@@ -48,6 +48,11 @@ function myToast() {
         duration=duration?duration:config.duration;
         weui.toast(message,{
             duration:duration,
+            callback:function(){
+                if(callback){
+                    callback();
+                }
+            }
         });
 
     }
