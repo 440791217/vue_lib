@@ -31,12 +31,17 @@ function Context() {
     }
 
     function created() {
+
         if (that.isDebug) {
             console.log('created context id:' + that.contextId);
         }
 
         if(this.$route&&this.$route.params&&this.$route.params.F_DATA){
-            that.routeParams=JSON.parse(Base64.decode(this.$route.params.F_DATA));
+            var params=this.$route.params.F_DATA;
+            Logger.d("params:"+params);
+            params=Base64.decode(params);
+            Logger.d("base64 decode params:"+params);
+            that.routeParams=JSON.parse(params);
         }else{
             that.routeParams={}
         }
