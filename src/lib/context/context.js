@@ -34,7 +34,7 @@ function Context() {
             console.log('created context id:' + that.contextId);
         }
 
-        if(this.$route&&this.$route.params){
+        if(this.$route&&this.$route.params&&this.$route.params.F_DATA){
             that.routeParams=JSON.parse(base64.decode(this.$route.params.F_DATA));
         }else{
             that.routeParams={}
