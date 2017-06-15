@@ -38,9 +38,9 @@ function Context() {
 
         if(this.$route&&this.$route.params&&this.$route.params.F_DATA){
             var params=this.$route.params.F_DATA;
-            Logger.d("params:"+params);
+            this.Logger.d("params:"+params);
             params=Base64.decode(params);
-            Logger.d("base64 decode params:"+params);
+            this.Logger.d("base64 decode params:"+params);
             that.routeParams=JSON.parse(params);
         }else{
             that.routeParams={}
