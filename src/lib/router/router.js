@@ -2,7 +2,7 @@
  * Created by mark on 2017/3/6.
  */
 import VueRouter from 'vue-router'
-import base64 from 'js-base64'
+import {Base64} from 'js-base64'
 
 function router() {
 
@@ -70,7 +70,7 @@ function router() {
             f_params = {}
 
             f_params=JSON.stringify(f_params);
-            f_params=base64.encode(f_params);
+            f_params=Base64.encode(f_params);
 
 
         obj = {

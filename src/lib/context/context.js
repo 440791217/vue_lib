@@ -1,7 +1,8 @@
 /**
  * Created by mark on 2017/3/30.
  */
-import base64 from 'js-base64'
+import {Base64} from 'js-base64'
+
 
 
 function Context() {
@@ -35,7 +36,7 @@ function Context() {
         }
 
         if(this.$route&&this.$route.params&&this.$route.params.F_DATA){
-            that.routeParams=JSON.parse(base64.decode(this.$route.params.F_DATA));
+            that.routeParams=JSON.parse(Base64.decode(this.$route.params.F_DATA));
         }else{
             that.routeParams={}
         }
